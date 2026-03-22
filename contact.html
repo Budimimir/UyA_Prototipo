@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Taxi Transfers Tenerife</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="Navegación principal">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Taxi Transfer TFS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú de navegación">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="booking.html">Reservar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="manage-booking.html">Mis Reservas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="contact.html">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" tabindex="-1">
+        <section class="container py-5">
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h1 class="mb-4">Contacto y Soporte</h1>
+                    <p class="lead mb-4">¿Tienes alguna duda o necesitas asistencia con tu reserva? Estamos aquí para ayudarte.</p>
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px;" aria-hidden="true">
+                            <span class="fs-4">📍</span>
+                        </div>
+                        <div>
+                            <h2 class="h6 mb-1">Dirección</h2>
+                            <p class="mb-0">Aeropuerto de Tenerife Sur, Granadilla de Abona, 38610</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px;" aria-hidden="true">
+                            <span class="fs-4">📞</span>
+                        </div>
+                        <div>
+                            <h2 class="h6 mb-1">Teléfono</h2>
+                            <p class="mb-0"><a href="tel:+34922000000" class="text-decoration-none">+34 922 00 00 00</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px;" aria-hidden="true">
+                            <span class="fs-4">✉️</span>
+                        </div>
+                        <div>
+                            <h2 class="h6 mb-1">Email</h2>
+                            <p class="mb-0"><a href="mailto:info@taxitransferstfs.com" class="text-decoration-none">info@taxitransferstfs.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="bg-white p-4 p-md-5 rounded shadow-sm border">
+                        <h2 class="h4 mb-4">Envíanos un mensaje</h2>
+                        <form action="#" method="POST" id="contact-form" novalidate aria-label="Formulario de contacto">
+                            <div class="mb-3">
+                                <label for="nombre_contacto" class="form-label fw-semibold">Nombre Completo <span class="text-danger" aria-hidden="true">*</span></label>
+                                <input type="text" class="form-control" id="nombre_contacto" name="nombre_contacto" required aria-required="true">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="email_contacto" class="form-label fw-semibold">Correo Electrónico <span class="text-danger" aria-hidden="true">*</span></label>
+                                <input type="email" class="form-control" id="email_contacto" name="email_contacto" required aria-required="true" aria-describedby="email-ayuda">
+                                <div id="email-ayuda" class="form-text">No compartiremos tu correo con nadie más.</div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="mensaje_contacto" class="form-label fw-semibold">Mensaje <span class="text-danger" aria-hidden="true">*</span></label>
+                                <textarea class="form-control" id="mensaje_contacto" name="mensaje_contacto" rows="5" required aria-required="true"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100 btn-lg">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 Taxi Transfer TFS. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>
