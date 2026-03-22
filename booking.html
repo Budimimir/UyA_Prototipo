@@ -11,6 +11,13 @@
 </head>
 <body>
     <!-- Navigation -->
+    <!--
+      booking.html
+      Formulario de reserva de taxi accesible.
+      Comentarios añadidos para explicar la estructura, accesibilidad y lógica de cada sección.
+    -->
+
+    <!-- Encabezado principal de la página -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="Navegación principal">
             <div class="container">
@@ -94,6 +101,13 @@
                                     <input type="number" class="form-control" id="pasajeros" name="pasajeros" min="1" max="8" value="1" required aria-required="true">
                                 </div>
                             </div>
+                                <!--
+                                  Formulario principal de reserva:
+                                  - Incluye campos para nombre, email, teléfono, fecha y hora, origen y destino.
+                                  - Todos los campos tienen etiquetas asociadas y descripciones para accesibilidad.
+                                  - Se usan atributos aria-required y aria-describedby para mejorar la experiencia con lectores de pantalla.
+                                  - El botón de envío tiene feedback accesible para usuarios con necesidades especiales.
+                                -->
                         </fieldset>
 
                         <div class="text-center">

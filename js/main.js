@@ -1,7 +1,11 @@
+document.addEventListener('DOMContentLoaded', () => {
+
 // main.js
+// Script principal para la gestión de accesibilidad y formularios en la web de reservas.
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Manejo del menú de navegación (Hamburguesa Bootstrap) para actualizar atributos ARIA.
+    // Permite a los lectores de pantalla saber si el menú está expandido o contraído.
     const navbarToggler = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.getElementById('navbarNav');
 
@@ -19,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 2. Función de utilidad para crear una región Live (aria-live) y anunciar cambios
+    // Esto permite que los mensajes sean leídos por tecnologías de asistencia.
     function announceToScreenReader(message) {
         let announcer = document.getElementById('aria-announcer');
         if (!announcer) {
@@ -38,8 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         announcer.textContent = message;
     }
+
     // 3. Simulación de envío de formularios accesible (booking.html y manage-booking.html)
-    // Booking Form
+    // Booking Form: valida campos y muestra mensajes accesibles
     const bookingForm = document.getElementById('booking-form');
     if (bookingForm) {
         bookingForm.addEventListener('submit', function(e) {
@@ -131,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Manage Booking Form
+    // Manage Booking Form: valida campos y muestra mensajes accesibles
     const manageForm = document.getElementById('manage-form');
     if (manageForm) {
         manageForm.addEventListener('submit', function(e) {
@@ -156,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Utilidad para mostrar mensajes accesibles en el formulario
+    // Crea o reutiliza un contenedor para mostrar el estado del formulario y mueve el foco para accesibilidad.
     function showFormStatus(form, message, success) {
         let status = form.querySelector('.form-status');
         if (!status) {

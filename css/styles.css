@@ -1,18 +1,36 @@
-/* styles.css */
-/* Sobrescribir colores de Bootstrap para asegurar el contraste de Accesibilidad AA (4.5:1) */
+/*
+  styles.css
+  Hoja de estilos personalizada para el prototipo UyA.
+  Comentarios añadidos para explicar la estructura, accesibilidad y personalización de Bootstrap.
+*/
+
+/*
+  Sección: Variables personalizadas
+  - Permite modificar colores y fuentes para mejorar el contraste y la accesibilidad.
+  - Facilita la personalización rápida de la paleta y el foco.
+*/
 :root {
     --primary-color: #0d6efd; /* Azul de Bootstrap */
     --primary-color-dark: #0056b3; /* Para hover o asegurar contraste en fondos claros */
     --focus-ring-color: #ff9800; /* Color naranja para alto contraste de foco */
 }
 
+/*
+  Sección: Estilos base del body
+  - Fuente legible y colores de alto contraste.
+  - Fondo claro para facilitar la lectura.
+*/
 body {
     font-family: Arial, sans-serif;
     color: #333; /* Texto principal oscuro para asegurar contraste contra fondo blanco */
     background-color: #f8f9fa; /* Fondo claro */
 }
 
-/* Indicadores de foco accesibles */
+/*
+  Sección: Accesibilidad - Indicadores de foco
+  - Mejora la visibilidad del foco para usuarios de teclado.
+  - Usa un color de alto contraste para el outline.
+*/
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -22,7 +40,10 @@ select:focus-visible {
     outline-offset: 2px;
 }
 
-/* Navbar ajustes */
+/*
+  Sección: Navbar
+  - Ajusta el espaciado y la tipografía del navbar para mayor claridad.
+*/
 .navbar {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -32,7 +53,11 @@ select:focus-visible {
     font-weight: bold;
 }
 
-/* Botones con contraste suficiente */
+/*
+  Sección: Botones
+  - Asegura contraste suficiente en botones principales.
+  - Colores más oscuros en hover/focus para accesibilidad.
+*/
 .btn-primary {
     background-color: var(--primary-color-dark);
     border-color: var(--primary-color-dark);
@@ -43,7 +68,11 @@ select:focus-visible {
     border-color: #004085;
 }
 
-/* Estilos de errores en formularios (aria-invalid) */
+/*
+  Sección: Formularios y errores
+  - Resalta campos inválidos con colores y fondos accesibles.
+  - No depende solo del color para indicar errores.
+*/
 input[aria-invalid="true"],
 textarea[aria-invalid="true"] {
     border-color: #dc3545; /* Rojo Bootstrap */

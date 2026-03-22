@@ -10,6 +10,13 @@
     <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
+    <!--
+      contact.html
+      Página de contacto y soporte.
+      Comentarios añadidos para explicar la estructura, accesibilidad y lógica de cada sección.
+    -->
+
+    <!-- Encabezado de contacto -->
     <!-- Navigation -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="Navegación principal">
@@ -80,6 +87,12 @@
                 <div class="col-lg-6">
                     <div class="bg-white p-4 p-md-5 rounded shadow-sm border">
                         <h2 class="h4 mb-4">Envíanos un mensaje</h2>
+                            <!--
+                              Formulario de contacto:
+                              - Permite a los usuarios enviar consultas o solicitudes de soporte.
+                              - Incluye campos accesibles y feedback para errores.
+                              - Se usan roles y atributos aria para accesibilidad.
+                            -->
                         <form action="#" method="POST" id="contact-form" novalidate aria-label="Formulario de contacto">
                             <div class="mb-3">
                                 <label for="nombre_contacto" class="form-label fw-semibold">Nombre Completo <span class="text-danger" aria-hidden="true">*</span></label>
