@@ -1,5 +1,3 @@
-describe('validateBookingForm', () => {
-
 // bookingValidation.test.js
 // Pruebas unitarias para la función validateBookingForm.
 // Cada test verifica un caso de validación del formulario de reserva.

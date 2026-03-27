@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Metadatos básicos de documento y adaptación responsive -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Reservas - Taxi Transfers Tenerife</title>
@@ -10,21 +11,24 @@
     <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <!--
-      manage-booking.html
-      Página para gestión de reservas existentes.
-      Comentarios añadidos para explicar la estructura, accesibilidad y lógica de cada sección.
-    -->
+        <!--
+            manage-booking.html
+            Objetivo:
+            - Permitir a clientes localizar una reserva existente.
+            - Solicitar código + email para identificar el registro.
+            - Mostrar mensajes de resultado de forma accesible.
+        -->
 
-    <!-- Encabezado de gestión de reservas -->
-    <!-- Navigation -->
+        <!-- Encabezado global con navegación principal -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="Navegación principal">
             <div class="container">
                 <a class="navbar-brand" href="index.html">Taxi Transfer TFS</a>
+                                <!-- Control de menú para vista móvil -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú de navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                                <!-- Enlaces principales del sitio -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
@@ -45,33 +49,46 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
+    <!-- Contenido principal: búsqueda y gestión de reserva -->
     <main id="main-content" tabindex="-1">
         <section class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6">
+                    <!-- Tarjeta central para agrupar formulario y resultado -->
                     <div class="card shadow-sm">
                         <div class="card-body p-5">
                             <h1 class="card-title h3 mb-4 text-center">Mis Reservas</h1>
                             <p class="card-text text-center mb-4">Introduce tu código de reserva y correo electrónico para consultar o gestionar tu viaje.</p>
                             
+                            <!--
+                              Formulario de consulta:
+                              - Solicita identificadores mínimos para localizar una reserva.
+                              - Usa novalidate para permitir control de errores desde JavaScript.
+                            -->
                             <form action="#" method="POST" id="manage-form" novalidate aria-label="Formulario para buscar reserva existente">
+                                <!-- Código de referencia entregado al confirmar la reserva -->
                                 <div class="mb-4">
                                     <label for="codigo_reserva" class="form-label fw-semibold">Código de Reserva <span class="text-danger" aria-hidden="true">*</span></label>
                                     <input type="text" class="form-control form-control-lg" id="codigo_reserva" name="codigo_reserva" placeholder="Ej. TX-12345" required aria-required="true">
                                 </div>
                                 
+                                <!-- Email usado en la reserva para verificación cruzada -->
                                 <div class="mb-4">
                                     <label for="email_reserva" class="form-label fw-semibold">Correo Electrónico <span class="text-danger" aria-hidden="true">*</span></label>
                                     <input type="email" class="form-control form-control-lg" id="email_reserva" name="email_reserva" placeholder="correo@ejemplo.com" required aria-required="true">
                                 </div>
                                 
+                                <!-- Acción principal de búsqueda -->
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-primary btn-lg">Buscar Reserva</button>
                                 </div>
                             </form>
                             
-                            <!-- Contenedor para mostrar resultados accesibles dinámicamente -->
+                            <!--
+                              Región dinámica para resultados:
+                              - aria-live="polite" anuncia cambios sin interrumpir al usuario.
+                              - aria-atomic="true" lee el bloque completo cuando se actualiza.
+                            -->
                             <div id="resultado-reserva" class="mt-4" aria-live="polite" aria-atomic="true"></div>
                         </div>
                     </div>
@@ -80,7 +97,7 @@
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Pie legal del sitio -->
     <footer class="bg-dark text-white text-center py-4 mt-5">
         <div class="container">
             <p class="mb-0">&copy; 2026 Taxi Transfer TFS. Todos los derechos reservados.</p>
@@ -89,13 +106,7 @@
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
+        <!-- Lógica de validaciones y feedback accesible -->
     <script src="js/main.js"></script>
-    <!--
-      Formulario de consulta de reserva:
-      - Permite buscar y modificar reservas mediante código y email.
-      - Campos accesibles y feedback para errores.
-      - Roles y atributos aria para accesibilidad.
-    -->
 </body>
 </html>

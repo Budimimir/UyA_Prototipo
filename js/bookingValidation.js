@@ -1,6 +1,7 @@
 
 // bookingValidation.js
-// Lógica de validación aislada para el formulario de reserva
+// Módulo de validación aislada para el formulario de reserva.
+// Se exporta para reutilización y para pruebas unitarias con Jest.
 
 /**
  * Valida los datos del formulario de reserva.
@@ -10,40 +11,47 @@
  * @returns {Object} { valid: boolean, errorMsg: string|null, invalidField: string|null }
  */
 function validateBookingForm(data) {
-    // Validar nombre (obligatorio)
+    // 1) Nombre obligatorio para identificar al titular de la reserva.
     if (!data.nombre || data.nombre.trim() === "") {
         return { valid: false, errorMsg: "El nombre es obligatorio.", invalidField: "nombre" };
     }
-    // Validar email (formato básico)
+
+    // 2) Email obligatorio con patrón básico nombre@dominio.ext
     if (!data.email || !/^\S+@\S+\.\S+$/.test(data.email)) {
         return { valid: false, errorMsg: "Introduce un correo electrónico válido.", invalidField: "email" };
     }
-    // Validar teléfono (solo dígitos, 9-15 números)
+
+    // 3) Teléfono: solo dígitos, longitud mínima 9 y máxima 15.
     if (!data.telefono || !/^\d{9,15}$/.test(data.telefono)) {
         return { valid: false, errorMsg: "Introduce un teléfono válido (solo dígitos, 9-15 números).", invalidField: "telefono" };
     }
-    // Validar origen (obligatorio)
+
+    // 4) Origen obligatorio (aeropuerto o punto configurado).
     if (!data.origen) {
         return { valid: false, errorMsg: "Selecciona el lugar de origen.", invalidField: "origen" };
     }
-    // Validar destino (obligatorio y geográfico)
+
+    // 5) Destino obligatorio y restringido a zonas soportadas por el servicio.
     if (!data.destino || data.destino.trim() === "") {
         return { valid: false, errorMsg: "El destino es obligatorio.", invalidField: "destino" };
     }
     if (!/(tenerife|adeje|arona)/i.test(data.destino)) {
         return { valid: false, errorMsg: "Solo se permiten destinos en Tenerife, Adeje o Arona.", invalidField: "destino" };
     }
-    // Validar fecha (obligatorio)
+
+    // 6) Fecha obligatoria para poder planificar el traslado.
     if (!data.fecha) {
         return { valid: false, errorMsg: "Selecciona la fecha del traslado.", invalidField: "fecha" };
     }
-    // Validar número de pasajeros (1-8)
+
+    // 7) Número de pasajeros dentro de la capacidad permitida (1 a 8).
     if (!data.pasajeros || data.pasajeros < 1 || data.pasajeros > 8) {
         return { valid: false, errorMsg: "El número de pasajeros debe estar entre 1 y 8.", invalidField: "pasajeros" };
     }
-    // Si todo es válido
+
+    // Si supera todas las comprobaciones, el formulario se considera válido.
     return { valid: true, errorMsg: null, invalidField: null };
 }
 
-// Exportar la función para uso en otros módulos
+// Export CommonJS para consumo en tests y otros módulos del proyecto.
 module.exports = { validateBookingForm };

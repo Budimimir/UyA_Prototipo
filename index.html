@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Metadatos base de la página principal -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taxi Transfers Tenerife</title>
@@ -10,20 +11,26 @@
     <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <!--
-      index.html
-      Página principal (landing page).
-      Comentarios añadidos para explicar la estructura, accesibilidad y lógica de cada sección.
-    -->
+        <!--
+            index.html
+            Landing principal del servicio.
+            Secciones clave:
+            - Navegación superior.
+            - Hero con llamada a la acción.
+            - Destinos destacados.
+            - Pie informativo.
+        -->
 
-    <!-- Navigation -->
+        <!-- Cabecera y navegación global -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="Navegación principal">
             <div class="container">
                 <a class="navbar-brand" href="index.html">Taxi Transfer TFS</a>
+                                <!-- Menú responsive para tamaños de pantalla reducidos -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú de navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                                <!-- Navegación principal del sitio -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
@@ -44,21 +51,23 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
+    <!-- Contenido principal de la página -->
     <main id="main-content" tabindex="-1">
-        <!-- Hero Section -->
+        <!-- Hero: propuesta de valor + CTA hacia la reserva -->
         <section class="bg-light py-5 border-bottom">
             <div class="container text-center">
                 <h1 class="display-4 fw-bold mb-4">Traslados desde el Aeropuerto de Tenerife Sur</h1>
                 <p class="lead mb-4">Reserva tu taxi oficial al mejor precio. Viaja seguro y sin esperas a cualquier punto de la isla.</p>
+                <!-- Botón principal que dirige al formulario de reserva -->
                 <a href="booking.html" class="btn btn-primary btn-lg px-4 me-sm-3" aria-label="Ir al formulario para reservar tu traslado ahora">Reserva tu traslado ahora</a>
             </div>
         </section>
 
-        <!-- Services / Destinations -->
+        <!-- Destinos destacados para orientar opciones frecuentes de traslado -->
         <section class="container py-5" aria-labelledby="servicios-title">
             <h2 id="servicios-title" class="text-center mb-5">Nuestros Destinos Principales</h2>
             <div class="row g-4">
+                <!-- Tarjeta de destino: Costa Adeje -->
                 <div class="col-md-4">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body text-center">
@@ -67,6 +76,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Tarjeta de destino: Los Cristianos -->
                 <div class="col-md-4">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body text-center">
@@ -75,6 +85,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Tarjeta de destino: Santa Cruz de Tenerife -->
                 <div class="col-md-4">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body text-center">
@@ -87,7 +98,7 @@
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Pie global con texto legal -->
     <footer class="bg-dark text-white text-center py-4 mt-5">
         <div class="container">
             <p class="mb-0">&copy; 2026 Taxi Transfer TFS. Todos los derechos reservados.</p>
@@ -96,7 +107,7 @@
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
+    <!-- Script principal compartido entre páginas -->
     <script src="js/main.js"></script>
 </body>
 </html>

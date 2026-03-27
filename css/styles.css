@@ -1,7 +1,12 @@
 /*
   styles.css
   Hoja de estilos personalizada para el prototipo UyA.
-  Comentarios añadidos para explicar la estructura, accesibilidad y personalización de Bootstrap.
+  Este archivo complementa Bootstrap con ajustes visuales y mejoras de accesibilidad.
+  Estructura del archivo:
+  1) Variables de diseño.
+  2) Base tipográfica y color.
+  3) Accesibilidad de foco.
+  4) Componentes principales (navbar, botones, formularios).
 */
 
 /*
@@ -10,9 +15,12 @@
   - Facilita la personalización rápida de la paleta y el foco.
 */
 :root {
-    --primary-color: #0d6efd; /* Azul de Bootstrap */
-    --primary-color-dark: #0056b3; /* Para hover o asegurar contraste en fondos claros */
-    --focus-ring-color: #ff9800; /* Color naranja para alto contraste de foco */
+  /* Color de referencia de Bootstrap, útil para futuras extensiones visuales */
+  --primary-color: #0d6efd;
+  /* Variante más oscura para estados interactivos (hover/focus) */
+  --primary-color-dark: #0056b3;
+  /* Anillo de foco visible para navegación por teclado */
+  --focus-ring-color: #ff9800;
 }
 
 /*
@@ -21,9 +29,12 @@
   - Fondo claro para facilitar la lectura.
 */
 body {
+  /* Tipografía sans-serif legible y ampliamente soportada */
     font-family: Arial, sans-serif;
-    color: #333; /* Texto principal oscuro para asegurar contraste contra fondo blanco */
-    background-color: #f8f9fa; /* Fondo claro */
+  /* Texto principal oscuro para asegurar contraste suficiente */
+  color: #333;
+  /* Fondo claro neutro para descanso visual */
+  background-color: #f8f9fa;
 }
 
 /*
@@ -36,6 +47,7 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
+  /* El outline reemplaza focos poco visibles por defecto */
     outline: 3px solid var(--focus-ring-color);
     outline-offset: 2px;
 }
@@ -45,11 +57,13 @@ select:focus-visible {
   - Ajusta el espaciado y la tipografía del navbar para mayor claridad.
 */
 .navbar {
+  /* Mayor área vertical para facilitar interacción táctil */
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
 .navbar-brand {
+  /* Refuerza visualmente la marca en cabecera */
     font-weight: bold;
 }
 
@@ -59,12 +73,14 @@ select:focus-visible {
   - Colores más oscuros en hover/focus para accesibilidad.
 */
 .btn-primary {
+  /* Se usa un azul más profundo para aumentar contraste del texto blanco */
     background-color: var(--primary-color-dark);
     border-color: var(--primary-color-dark);
 }
 
 .btn-primary:hover, .btn-primary:focus {
-    background-color: #004085; /* Más oscuro para mantener contraste al hover */
+  /* Estado activo ligeramente más oscuro para feedback visual claro */
+  background-color: #004085;
     border-color: #004085;
 }
 
@@ -75,11 +91,13 @@ select:focus-visible {
 */
 input[aria-invalid="true"],
 textarea[aria-invalid="true"] {
-    border-color: #dc3545; /* Rojo Bootstrap */
-    background-color: #f8d7da; /* Fondo suave para ayudar visualmente pero no depender solo del color */
+  /* Bordes y fondo para estados inválidos detectados por validación JS */
+  border-color: #dc3545;
+  background-color: #f8d7da;
 }
 
 .error-message {
+  /* Mensajes de error compactos y legibles debajo de controles */
     color: #dc3545;
     font-size: 0.875em;
     margin-top: 0.25rem;

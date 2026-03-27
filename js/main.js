@@ -1,18 +1,18 @@
-document.addEventListener('DOMContentLoaded', () => {
-
 // main.js
-// Script principal para la gestión de accesibilidad y formularios en la web de reservas.
+// Script principal del proyecto:
+// - Gestiona anuncios accesibles para lectores de pantalla.
+// - Valida formularios de reserva y consulta.
+// - Muestra mensajes de estado con foco programático.
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Manejo del menú de navegación (Hamburguesa Bootstrap) para actualizar atributos ARIA.
-    // Permite a los lectores de pantalla saber si el menú está expandido o contraído.
+    // Referencias a elementos del menú responsive de Bootstrap.
     const navbarToggler = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.getElementById('navbarNav');
 
+    // Sincroniza aria-expanded con el estado real del menú colapsable.
     if (navbarToggler && navbarCollapse) {
         navbarCollapse.addEventListener('shown.bs.collapse', () => {
             navbarToggler.setAttribute('aria-expanded', 'true');
-            // Anunciar al lector de pantallas (opcional, pero útil)
             announceToScreenReader('Menú de navegación expandido');
         });
 
@@ -22,15 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Función de utilidad para crear una región Live (aria-live) y anunciar cambios
-    // Esto permite que los mensajes sean leídos por tecnologías de asistencia.
+    // Crea (si no existe) una región aria-live para anunciar cambios no visuales.
     function announceToScreenReader(message) {
         let announcer = document.getElementById('aria-announcer');
+
         if (!announcer) {
             announcer = document.createElement('div');
             announcer.id = 'aria-announcer';
             announcer.setAttribute('aria-live', 'polite');
-            // Hacerlo visualmente oculto pero accesible al lector
+
+            // Oculta visualmente el nodo sin retirarlo del árbol de accesibilidad.
             announcer.style.position = 'absolute';
             announcer.style.width = '1px';
             announcer.style.height = '1px';
@@ -39,18 +40,20 @@ document.addEventListener('DOMContentLoaded', () => {
             announcer.style.overflow = 'hidden';
             announcer.style.clip = 'rect(0,0,0,0)';
             announcer.style.border = '0';
+
             document.body.appendChild(announcer);
         }
+
         announcer.textContent = message;
     }
 
-    // 3. Simulación de envío de formularios accesible (booking.html y manage-booking.html)
-    // Booking Form: valida campos y muestra mensajes accesibles
+    // Formulario de reserva (booking.html).
+    // Se valida secuencialmente y se detiene en el primer error detectado.
     const bookingForm = document.getElementById('booking-form');
     if (bookingForm) {
-        bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Validación de campos obligatorios y formato
+        bookingForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
             const nombre = bookingForm.nombre.value.trim();
             const email = bookingForm.email.value.trim();
             const telefono = bookingForm.telefono.value.trim();
@@ -58,9 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const destino = bookingForm.destino.value.trim();
             const fecha = bookingForm.fecha.value;
             const pasajeros = bookingForm.pasajeros.value;
+
             let valid = true;
             let errorMsg = '';
-            // Validación de nombre
+
             if (!nombre) {
                 valid = false;
                 errorMsg = 'El nombre es obligatorio.';
@@ -68,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 bookingForm.nombre.removeAttribute('aria-invalid');
             }
-            // Validación de email
+
             if (valid && (!email || !/^\S+@\S+\.\S+$/.test(email))) {
                 valid = false;
                 errorMsg = 'Introduce un correo electrónico válido.';
@@ -76,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 bookingForm.email.removeAttribute('aria-invalid');
             }
-            // Validación de teléfono
+
             if (valid && (!telefono || !/^\d{9,15}$/.test(telefono))) {
                 valid = false;
                 errorMsg = 'Introduce un teléfono válido (solo dígitos, 9-15 números).';
@@ -84,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 bookingForm.telefono.removeAttribute('aria-invalid');
             }
-            // Validación de origen
+
             if (valid && !origen) {
                 valid = false;
                 errorMsg = 'Selecciona el lugar de origen.';
@@ -92,13 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 bookingForm.origen.removeAttribute('aria-invalid');
             }
-            // Validación de destino
+
             if (valid && !destino) {
                 valid = false;
                 errorMsg = 'El destino es obligatorio.';
                 bookingForm.destino.setAttribute('aria-invalid', 'true');
             } else if (valid) {
-                // Validación geográfica básica: solo destinos en Tenerife, Adeje, Arona
+                // Regla de negocio simplificada: solo ciertas zonas permitidas.
                 const destinoValido = /(tenerife|adeje|arona)/i.test(destino);
                 if (!destinoValido) {
                     valid = false;
@@ -110,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 bookingForm.destino.removeAttribute('aria-invalid');
             }
-            // Validación de fecha
+
             if (valid && !fecha) {
                 valid = false;
                 errorMsg = 'Selecciona la fecha del traslado.';
@@ -118,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 bookingForm.fecha.removeAttribute('aria-invalid');
             }
-            // Validación de pasajeros
+
             if (valid && (!pasajeros || pasajeros < 1 || pasajeros > 8)) {
                 valid = false;
                 errorMsg = 'El número de pasajeros debe estar entre 1 y 8.';
@@ -126,45 +130,55 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 bookingForm.pasajeros.removeAttribute('aria-invalid');
             }
+
             if (valid) {
-                announceToScreenReader('Reserva realizada con éxito. Recibirás un correo de confirmación.');
-                showFormStatus(bookingForm, 'Reserva realizada con éxito. Recibirás un correo de confirmación.', true);
+                const successMsg = 'Reserva realizada con éxito. Recibirás un correo de confirmación.';
+                announceToScreenReader(successMsg);
+                showFormStatus(bookingForm, successMsg, true);
                 bookingForm.reset();
-            } else {
-                announceToScreenReader(errorMsg);
-                showFormStatus(bookingForm, errorMsg, false);
+                return;
             }
+
+            announceToScreenReader(errorMsg);
+            showFormStatus(bookingForm, errorMsg, false);
         });
     }
 
-    // Manage Booking Form: valida campos y muestra mensajes accesibles
+    // Formulario de gestión de reservas (manage-booking.html).
+    // Valida presencia de código y email antes de simular búsqueda.
     const manageForm = document.getElementById('manage-form');
     if (manageForm) {
-        manageForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+        manageForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
             const codigo = manageForm.codigo_reserva.value;
             const email = manageForm.email_reserva.value;
             let valid = true;
             let errorMsg = '';
+
             if (!codigo || !email) {
                 valid = false;
                 errorMsg = 'Introduce el código de reserva y el correo electrónico.';
             }
+
             if (valid) {
-                announceToScreenReader('Reserva encontrada. Mostrando detalles.');
-                showFormStatus(manageForm, 'Reserva encontrada. Mostrando detalles.', true);
+                const successMsg = 'Reserva encontrada. Mostrando detalles.';
+                announceToScreenReader(successMsg);
+                showFormStatus(manageForm, successMsg, true);
                 manageForm.reset();
-            } else {
-                announceToScreenReader(errorMsg);
-                showFormStatus(manageForm, errorMsg, false);
+                return;
             }
+
+            announceToScreenReader(errorMsg);
+            showFormStatus(manageForm, errorMsg, false);
         });
     }
 
-    // Utilidad para mostrar mensajes accesibles en el formulario
-    // Crea o reutiliza un contenedor para mostrar el estado del formulario y mueve el foco para accesibilidad.
+    // Inserta o reutiliza un contenedor de estado dentro del formulario.
+    // Además, mueve el foco al mensaje para lectura inmediata por teclado/lector.
     function showFormStatus(form, message, success) {
         let status = form.querySelector('.form-status');
+
         if (!status) {
             status = document.createElement('div');
             status.className = 'form-status mt-3';
@@ -172,21 +186,13 @@ document.addEventListener('DOMContentLoaded', () => {
             status.setAttribute('tabindex', '-1');
             form.appendChild(status);
         }
+
         status.textContent = message;
-        status.style.color = success ? '#198754' : '#dc3545'; // Verde Bootstrap para éxito
+        status.style.color = success ? '#198754' : '#dc3545';
         status.style.backgroundColor = success ? '#e9fbe8' : '#f8d7da';
         status.style.padding = '0.5em 1em';
         status.style.borderRadius = '0.25em';
         status.style.marginTop = '1em';
-        // Mover el foco al mensaje para accesibilidad
         status.focus();
     }
-
-    // 4. Verificación de foco visible en todos los elementos interactivos
-    // (El CSS ya lo implementa, aquí solo se puede forzar un focus para demo)
-    // document.querySelectorAll('a, button, input, select, textarea').forEach(el => {
-    //     el.addEventListener('focus', () => {
-    //         // El outline se muestra por CSS :focus-visible
-    //     });
-    // });
 });

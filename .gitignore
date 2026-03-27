@@ -1,4 +1,5 @@
 node_modules/
+/.copilot
 /.atl
 /.sdd
-/.copilot/*
+./Prototipo UyA.code-workspace
